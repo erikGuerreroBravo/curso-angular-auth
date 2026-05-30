@@ -27,12 +27,7 @@
         This field should be a email
       </p>
     </div>
-    <!--  agregamos mensaje de error o success dependiendo del resultado -->
-    <div *ngIf="status === 'failed'">
-      <p class="font-medium text-red-500 text-xs mt-1 ml-1">
-        las credenciales no son validas
-      </p>
-    </div>
+
   </div>
   <div>
     <div class="relative">
@@ -61,6 +56,13 @@
       </p>
     </div>
   </div>
+  <!--  agregamos mensaje de error o success dependiendo del resultado -->
+    <div *ngIf="status === 'failed'">
+      <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+        las credenciales no son validas
+      </p>
+    </div>
+    <!--terminamos mensaje de error de credenciales-->
   <div>
     <app-btn
       typeBtn="submit"
