@@ -22,9 +22,11 @@ export class LoginFormComponent {
   showPassword = false;
   status: string = 'init';
 
+  /*2.- Inyectamos el servicio de autenticación en el constructor del componente */
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   doLogin() {
