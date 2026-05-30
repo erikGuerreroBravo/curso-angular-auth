@@ -15,7 +15,7 @@
         *ngIf="form.controls.name.hasError('required')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field is mandatory
+        El campo es Obligatorio 
       </p>
     </div>
   </div>
@@ -35,13 +35,13 @@
         *ngIf="form.controls.email.hasError('required')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field is mandatory
+        El campo es Obligatorio
       </p>
       <p
         *ngIf="form.controls.email.hasError('email')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field should be a email
+        El campo debe ser un email válido
       </p>
     </div>
   </div>
@@ -68,13 +68,13 @@
         *ngIf="form.controls.password.hasError('required')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field is mandatory
+        El campo es Obligatorio
       </p>
       <p
         *ngIf="form.controls.password.hasError('minlength')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field should be greater than 6 characters
+        El campo debe tener más de 8 caracteres
       </p>
     </div>
   </div>
@@ -97,7 +97,7 @@
         *ngIf="form.controls.confirmPassword.hasError('required')"
         class="font-medium text-red-500 text-xs mt-1 ml-1"
       >
-        This field is mandatory
+        El campo es Obligatorio
       </p>
       <p
         *ngIf="form.controls.confirmPassword.hasError('minlength')"

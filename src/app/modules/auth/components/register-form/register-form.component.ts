@@ -35,6 +35,16 @@ export class RegisterFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { name, email, password } = this.form.getRawValue();
+      this.authService.register(name, email, password).subscribe({
+        next:() =>{
+          this.status = 'success';
+          this.router.navigate(['/login']);
+
+        },
+        error:()=>{
+          this.status = 'failed';
+        }
+      });
       console.log(name, email, password);
     } else {
       this.form.markAllAsTouched();
