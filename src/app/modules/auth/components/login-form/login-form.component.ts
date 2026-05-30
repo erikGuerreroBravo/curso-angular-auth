@@ -33,7 +33,19 @@ export class LoginFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
-      // TODO
+      this.authService.login(email,password).subscribe({
+        next: ()=> {
+          /**si todo es correcto podremos redirigir internamente a la app del proyecto. */
+          this.router.navigate(['/app']);
+        },error: ()=>{
+
+        }
+
+      });
+
+
+
+
     } else {
       this.form.markAllAsTouched();
     }
