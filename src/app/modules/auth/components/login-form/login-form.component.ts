@@ -20,7 +20,7 @@ export class LoginFormComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
-  status: string = 'init';
+  status: 'init'  | 'loading' | 'success' | 'failed' = 'init';
 
   /*2.- Inyectamos el servicio de autenticación en el constructor del componente */
   constructor(
