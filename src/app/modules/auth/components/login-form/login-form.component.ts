@@ -35,10 +35,11 @@ export class LoginFormComponent {
       const { email, password } = this.form.getRawValue();
       this.authService.login(email,password).subscribe({
         next: ()=> {
+          this.status = 'success';
           /**si todo es correcto podremos redirigir internamente a la app del proyecto. */
           this.router.navigate(['/app']);
         },error: ()=>{
-
+          this.status = 'failed';
         }
 
       });
