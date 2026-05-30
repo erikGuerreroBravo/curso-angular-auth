@@ -41,8 +41,9 @@ export class RegisterFormComponent {
           this.router.navigate(['/login']);
 
         },
-        error:()=>{
+        error:(error)=>{
           this.status = 'failed';
+          console.log(error);
         }
       });
       console.log(name, email, password);
