@@ -5,7 +5,7 @@ import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 /*1.- Importamos el servicio de autenticación */
 import { AuthService } from '@services/auth.service';
-
+import { RequestStatus } from '@models/request-status.model';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html'
