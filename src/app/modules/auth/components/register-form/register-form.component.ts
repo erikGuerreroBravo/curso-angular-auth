@@ -31,7 +31,7 @@ export class RegisterFormComponent {
   faEyeSlash = faEyeSlash;
   showPassword = false;
   showRegister = false;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -67,6 +67,7 @@ export class RegisterFormComponent {
         next:(rta) =>{
           this.statusUser = 'success';
           if(rta.isAvailable){
+            this.showRegister = true;
             /**establecemos los valores en el formulario */
            this.form.controls.email.setValue(email);
           }
