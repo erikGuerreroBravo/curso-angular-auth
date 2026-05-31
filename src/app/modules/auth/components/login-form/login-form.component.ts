@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 /*1.- Importamos el servicio de autenticación */
@@ -26,8 +26,16 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private route: ActivatedRoute
+
+  ) { 
+    this.route.queryParams.subscribe((params) => {
+      if (params['email']) {
+        this.form.controls.email.setValue(params['email']);
+      }
+    });
+  }
 
   doLogin() {
     if (this.form.valid) {
