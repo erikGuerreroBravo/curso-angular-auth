@@ -57,4 +57,8 @@ export class RegisterFormComponent {
       this.form.markAllAsTouched();
     }
   }
+
+  validateUser(){
+    
+  }
 }
