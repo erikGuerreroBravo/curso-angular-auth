@@ -60,7 +60,18 @@ export class RegisterFormComponent {
 
   validateUser(){
     if(this.formUser.valid){
-
+      this.statusUser='loading';
+      const {email} = this.formUser.getRawValue();
+      this.authService.isAvailable(email).subscribe({
+        next:() =>{
+          this.statusUser = 'success';
+          this.router.navigate(['/login']);
+        },
+        error:(error) =>{
+          this.statusUser = 'failed';
+          console.log(error);
+        }
+      });
     }
     else{
       this.formUser.markAllAsTouched();
