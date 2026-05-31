@@ -30,7 +30,8 @@ export class RegisterFormComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
-
+  showRegister = false;
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
