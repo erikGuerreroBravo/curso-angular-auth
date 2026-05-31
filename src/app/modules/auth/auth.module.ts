@@ -16,6 +16,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { ForgotPasswordFormComponent } from './components/forgot-password-form/forgot-password-form.component';
 import { RecoveryFormComponent } from './components/recovery-form/recovery-form.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { A11yModule } from "@angular/cdk/a11y";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { BackgroundComponent } from './components/background/background.componen
     SharedModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+    A11yModule
+]
 })
 export class AuthModule { }
