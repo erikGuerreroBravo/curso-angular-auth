@@ -59,6 +59,11 @@ export class RegisterFormComponent {
   }
 
   validateUser(){
-    
+    if(this.formUser.valid){
+
+    }
+    else{
+      this.formUser.markAllAsTouched();
+    }
   }
 }
