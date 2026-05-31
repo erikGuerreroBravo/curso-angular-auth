@@ -63,9 +63,15 @@ export class RegisterFormComponent {
       this.statusUser='loading';
       const {email} = this.formUser.getRawValue();
       this.authService.isAvailable(email).subscribe({
-        next:() =>{
+        next:(rta) =>{
           this.statusUser = 'success';
-          this.router.navigate(['/login']);
+          if(rta.isAvailable){
+            /**establecemos los valores en el formulario */
+           this.form.controls.email.setValue(email);
+          }
+          else{
+             this.router.navigate(['/login']);
+          }
         },
         error:(error) =>{
           this.statusUser = 'failed';
