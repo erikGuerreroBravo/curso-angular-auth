@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 /**.  1.-traemos un short para ocupar los ambientes y de esa manera trabajaos con las llamadas a httpclient*/
 import { environment } from '@environments/environment';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
 
 
 
@@ -28,7 +29,9 @@ export class AuthService {
 
   registerAndLogin(name:string , password: string)
   {
-
+      return this.register(name, name, password).pipe(
+        switchMap(() => this.login(name, password))
+      )
   }
 
   isAvailable(email:string){
