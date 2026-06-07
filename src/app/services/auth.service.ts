@@ -29,6 +29,7 @@ export class AuthService {
 
   registerAndLogin(name:string , password: string)
   {
+    /**en este metodo se encarga de registrar y luego iniciar sesión */
       return this.register(name, name, password).pipe(
         switchMap(() => this.login(name, password))
       )
