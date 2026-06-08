@@ -27,7 +27,7 @@ export class AuthService {
       return this.http.post(`${this.apiUrl}/api/v1/auth/register`, {name, email, password});
   }
 
-  registerAndLogin(name:string , password: string)
+  registerAndLogin(name:string, email: string, password: string)
   {
     /**en este metodo se encarga de registrar y luego iniciar sesión */
       return this.register(name, name, password).pipe(
