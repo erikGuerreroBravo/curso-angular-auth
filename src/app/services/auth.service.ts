@@ -59,4 +59,10 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/api/v1/auth/change-password`, {token,newPassword});
   }
 
+  logout(){
+    /* este metodo se encarga de eliminar el token del localstorage */
+    this.tokenService.removeToken();
+  }
+
+
 }

@@ -14,11 +14,11 @@ export class RedirectGuard implements CanActivate {
   
   }
  
+  /* este metodo se encarga de preguntar  si ya existe un token entonces  redirige a la pagina del sistema */
   canActivate(): boolean{
     const token = this.tokenService.getToken();
-    if(!token){
-      this.router.navigate(['/login']);
-      return false;
+    if(token){
+      this.router.navigate(['/app']);
     }
     return true;
   }
