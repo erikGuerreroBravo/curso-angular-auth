@@ -22,8 +22,10 @@ export class AuthService {
 
 
   login(email: string, password: string){
-      return this.http.post<ResponseLogin>(`${this.apiUrl}/api/v1/auth/login`, {email, password}).pipe(
-        /*el tap se encarga de ejecutar una acción secundaria sin modificar el flujo de datos, en este caso se encarga de guardar el token en el localstorage */
+      return this.http.post<ResponseLogin>(`${this.apiUrl}/api/v1/auth/login`, {email, password})
+      .pipe(
+        /*el tap se encarga de ejecutar una acción secundaria sin modificar el flujo de datos, 
+        en este caso se encarga de guardar el token en el localstorage */
         tap(response => {
           this.tokenService.saveToken(response.access_token);
         })
