@@ -3,8 +3,9 @@ import {HttpClient} from "@angular/common/http";
 /**.  1.-traemos un short para ocupar los ambientes y de esa manera trabajaos con las llamadas a httpclient*/
 import { environment } from '@environments/environment';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
-
-
+import { tap } from 'rxjs/internal/operators/tap';
+import { TokenService} from '@services/token.service';
+import { ResponseLogin } from '@models/auth.model'; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,19 @@ export class AuthService {
   apiUrl = environment.API_URL;
 
   constructor(
-    private http: HttpClient) 
+    private http: HttpClient,
+    private tokenService: TokenService
+   ) 
   { }
 
 
   login(email: string, password: string){
-      return this.http.post(`${this.apiUrl}/api/v1/auth/login`, {email, password});
+      return this.http.post<ResponseLogin>(`${this.apiUrl}/api/v1/auth/login`, {email, password}).pipe(
+        /*el tap se encarga de ejecutar una acción secundaria sin modificar el flujo de datos, en este caso se encarga de guardar el token en el localstorage */
+        tap(response => {
+          this.tokenService.saveToken(response.access_token);
+        })
+      )
   }
 
   register(name:string, email: string, password: string)
@@ -40,4 +48,13 @@ export class AuthService {
       `${this.apiUrl}/api/v1/auth/is-available`,{email}
     );
   }
+
+  recovery(email:string){
+      return  this.http.post(`${this.apiUrl}/api/v1/auth/recovery`,{email});
+  }
+  
+  changePassword(token:string, newPassword:string){
+    return this.http.post(`${this.apiUrl}/api/v1/auth/change-password`, {token,newPassword});
+  }
+
 }
