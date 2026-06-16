@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { tap } from 'rxjs/internal/operators/tap';
 import { TokenService} from '@services/token.service';
 import { ResponseLogin } from '@models/auth.model'; 
+import { User } from '@models/user.model';  
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,16 @@ export class AuthService {
   logout(){
     /* este metodo se encarga de eliminar el token del localstorage */
     this.tokenService.removeToken();
+  }
+
+  getprofile(email:string){
+    const token = this.tokenService.getToken();
+    return this.http.get<User>(`${this.apiUrl}/api/v1/profile`,{
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
+    });
+    
   }
 
 
