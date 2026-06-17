@@ -65,9 +65,9 @@ export class AuthService {
     this.tokenService.removeToken();
   }
 
-  getprofile(email:string){
+  getprofile(){
     const token = this.tokenService.getToken();
-    return this.http.get<User>(`${this.apiUrl}/api/v1/profile`,{
+    return this.http.get<User>(`${this.apiUrl}/api/v1/auth/profile`,{
       headers:{
         Authorization: `Bearer ${token}`
       }
