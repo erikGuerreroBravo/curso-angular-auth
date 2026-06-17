@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faBell,
@@ -14,13 +14,13 @@ import {AuthService} from '@services/auth.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent { //implements OnInit
   faBell = faBell;
   faInfoCircle = faInfoCircle;
   faClose = faClose;
   faAngleDown = faAngleDown;
 
-  user: User | null = null;
+  user$ = this.authService.user$;
 
   isOpenOverlayAvatar = false;
   isOpenOverlayBoards = false;
@@ -28,11 +28,11 @@ export class NavbarComponent implements OnInit{
   constructor(private authService: AuthService, private router: Router) {}
   
   
-  ngOnInit(): void {
-    this.authService.getprofile().subscribe(user => {
-      this.user = user;
-    });
-  }
+  //ngOnInit(): void {
+    //this.authService.getprofile().subscribe(user => {
+      //this.user = user;
+    //});
+  //}
 
   logout(){
     /* este metodo se encarga de eliminar el token del localstorage */

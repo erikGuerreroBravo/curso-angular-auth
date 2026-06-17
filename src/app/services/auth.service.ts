@@ -37,6 +37,10 @@ export class AuthService {
       )
   }
 
+  getDataUser(){
+    return this.user$.getValue();
+  }
+
   register(name:string, email: string, password: string)
   {
       return this.http.post(`${this.apiUrl}/api/v1/auth/register`, {name, email, password});
