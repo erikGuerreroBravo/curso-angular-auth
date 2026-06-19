@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode , JwtPayload} from 'jwt-decode';
 
 import {getCookie, setCookie, removeCookie} from 'typescript-cookie';
 
@@ -25,4 +26,20 @@ export class TokenService {
     removeCookie('token-trello', { path: '/' });
   }
 
+  isValidToken()
+  {
+    const token = this.getToken();
+    if(!token){
+      return false;
+    }
+    //implementamos nuestra libreria instalada.
+    const decodetoken = jwtDecode<JwtPayload>(token);
+    if(decodetoken && decodetoken){
+      const tokenDate = new Date(0);
+      tokenDate.setUTCSeconds(decodetoken.exp!);
+      const today = new Date();
+      return tokenDate.getTime() > today.getTime();
+    }
+    return false;
+  }
 }

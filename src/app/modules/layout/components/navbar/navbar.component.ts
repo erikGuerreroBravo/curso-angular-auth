@@ -9,6 +9,8 @@ import {
 
 import { User } from '@models/user.model';
 import {AuthService} from '@services/auth.service';
+import { TokenService}  from '@services/token.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +27,7 @@ export class NavbarComponent { //implements OnInit
   isOpenOverlayAvatar = false;
   isOpenOverlayBoards = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private tokenService: TokenService) {}
   
   
   //ngOnInit(): void {
@@ -40,6 +42,9 @@ export class NavbarComponent { //implements OnInit
     this.router.navigate(['/login']);
   }
 
-  
+  isValidToken()
+  {
+      console.log(this.tokenService.isValidToken());
+  }
 
 }
