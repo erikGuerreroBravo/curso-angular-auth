@@ -35,6 +35,7 @@ export class AuthService {
         en este caso se encarga de guardar el token en el localstorage */
         tap(response => {
           this.tokenService.saveToken(response.access_token);
+          this.tokenService.saveRefreshToken(response.refresh_token);
         })
       )
   }

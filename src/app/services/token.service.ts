@@ -26,6 +26,17 @@ export class TokenService {
     removeCookie('token-trello', { path: '/' });
   }
 
+  removeRefreshToken(){
+    removeCookie('refresh-token-trello');
+  }
+  saveRefreshToken(token: string){
+     setCookie('refresh-token-trello',token,{expires:365, path:'/'});
+  }
+  getRefreshToken(){
+    const token = getCookie('refresh-token-trello');
+    return token;
+  }
+
   isValidToken()
   {
     const token = this.getToken();
@@ -42,4 +53,24 @@ export class TokenService {
     }
     return false;
   }
+
+  isValidRefreshToken()
+  {
+    const token = this.getRefreshToken();
+    if(!token){
+      return false;
+    }
+    //implementamos nuestra libreria instalada.
+    const decodetoken = jwtDecode<JwtPayload>(token);
+    if(decodetoken && decodetoken){
+      const tokenDate = new Date(0);
+      tokenDate.setUTCSeconds(decodetoken.exp!);
+      const today = new Date();
+      return tokenDate.getTime() > today.getTime();
+    }
+    return false;
+  }
+
+
+
 }

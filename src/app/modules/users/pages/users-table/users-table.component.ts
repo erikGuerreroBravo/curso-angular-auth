@@ -25,17 +25,41 @@ export class UsersTableComponent  implements OnInit {
     ]);
   }
    
-  ngOnInit(): void {
-    this.usersService.getUsers().subscribe ((users:any) => {
-      this.dataSource.init(users);
-    })
-    this.authService.user$.subscribe(user=>{
-      this.user =  user;
-    })
+  //ngOnInit(): void {
+
+    //this.usersService.getUsers().subscribe ((users:any) => {
+     // this.dataSource.init(users);
+    
+   //})
+    //this.authService.user$.subscribe(user=>{
+      //this.user =  user;
+    //})
+
+
     //.getprofile().subscribe(user => {
     //this.user = user;
     //})
     ///this.user = this.authService.getDataUser();
 
+  //}
+
+  ngOnInit(): void {
+    this.getUsers();
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    })
   }
+
+
+  getUsers(){
+    this.usersService.getUsers()
+    .subscribe(users => {
+      this.dataSource.init(users);
+    });
+
+  }
+
+
+
+   
 }
